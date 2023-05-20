@@ -11,19 +11,22 @@
         <h1>Weather Dashboard</h1>
     </header>
     <main class="container">
-        <div class="col-12 col-md-3 p-3 bg-light text-dark">
-            <h2>Search For a City:</h2>
-            <form>
-                <fieldset>
-                    <div class="mb-3">
+        <div class="row">
+            <div class="col-12 col-md-3 p-3 bg-light text-dark">
+                <form>
+                    <fieldset>
+                        <h2>Search For a City:</h2>
+                        <div class="mb-3">
                         <input type="text" id="city-search">
-                    </div>
-                    <button type="submit" class="search-btn"></button>
-                </fieldset>
-            </form>
-
+                        </div>
+                        <button type="submit" class="search-btn">Search</button>
+                    </fieldset>
+                </form>
+                <ul id="prev-searches"></ul>
+            </div>
+            <div id="city-current-weather"></div>
+            <div id="forecast"></div>
         </div>
-
     </main>
     <script src="./script.js"></script>
 </body>
