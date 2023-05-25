@@ -1,14 +1,15 @@
 :root {
     --dark: #031214;
     --light: #863227c5;
-    --splash: #64d8c5d5;
+    --splash: #c3e9e2;
 }
 
 header {
     background-image: linear-gradient(
         #a13223c5 0%,
-        #031214 100%
+        black 100%
     );
+    padding-left: 30px;
 }
 
 h1, 
@@ -27,7 +28,10 @@ h6,
 }
 
 .card {
-    background-color: var(--light);
+    background-image: linear-gradient(
+        #a13223c5 50%,
+        #345155 100%
+    );
     border: solid 2px black;
     border-radius: 10px;
     color: var(--splash);

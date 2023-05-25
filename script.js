@@ -142,10 +142,10 @@ function getWeatherForecast(lat, lon) {
             forecast1.setAttribute('class', 'card col-md-2 mx-2')
             var forecast1Date = document.createElement('h5')
             console.log(forecastArr[i].dt);
-            // var unixTime = forecastArr[i].dt
-            // var date = unixTime * 1000
-            // new java.util.Date((long)date);
-            // // forecast1Date.textContent = forecastArr[i].;
+            var unixTime = forecastArr[i].dt
+            var timestamp = new Date(unixTime * 1000);
+            var formattedDate = new Date(timestamp).toLocaleDateString("en-us");
+            forecast1Date.textContent = formattedDate;
             var weatherIcon = forecastArr[i].weather[0].icon
             var iconEl = document.createElement('img');
             iconEl.setAttribute('src', `http://openweathermap.org/img/w/${weatherIcon}.png`)
