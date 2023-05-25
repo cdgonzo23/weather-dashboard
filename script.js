@@ -11,6 +11,10 @@ var nextDate2 = dayjs().add(2, 'd').format('MM/DD/YYYY');
 var nextDate3 = dayjs().add(3, 'd').format('MM/DD/YYYY');
 var nextDate4 = dayjs().add(4, 'd').format('MM/DD/YYYY');
 var nextDate5 = dayjs().add(5, 'd').format('MM/DD/YYYY');
+var forecast2 = document.querySelector('#next-day2');
+var forecast3 = document.querySelector('#next-day3');
+var forecast4 = document.querySelector('#next-day4');
+var forecast5 = document.querySelector('#next-day5');
 var apiKey = "2493754d1fbba673aa3e32978ca44e41";
 
 
@@ -62,6 +66,7 @@ function getCurrentWeather(lat, lon) {
         .then(function(data) {
             console.log(data);
             currentWeather.innerHTML = null;
+            currentWeather.classList = "card"
             cityName.textContent = citySearch.value;
             console.log(data.weather[0].icon);
             var weatherEl = document.createElement('div');
@@ -105,26 +110,116 @@ function getWeatherForecast(lat, lon) {
             console.log(data);
             forecastContainer.innerHTML = null;
             forecastCityName.textContent = citySearch.value;
-            console.log(nextDate1);
-            console.log(Math.floor(data.list[0].main.temp));
-            console.log(Math.floor(data.list[0].main.humidity));
-            console.log(Math.floor(data.list[0].wind.speed));
-            console.log(nextDate2);
-            console.log(Math.floor(data.list[8].main.temp));
-            console.log(Math.floor(data.list[8].main.humidity));
-            console.log(Math.floor(data.list[8].wind.speed));
-            console.log(nextDate3);
-            console.log(Math.floor(data.list[16].main.temp));
-            console.log(Math.floor(data.list[16].main.humidity));
-            console.log(Math.floor(data.list[16].wind.speed));
-            console.log(nextDate4);
-            console.log(Math.floor(data.list[24].main.temp));
-            console.log(Math.floor(data.list[24].main.humidity));
-            console.log(Math.floor(data.list[24].wind.speed));
-            console.log(nextDate5);
-            console.log(Math.floor(data.list[32].main.temp));
-            console.log(Math.floor(data.list[32].main.humidity));
-            console.log(Math.floor(data.list[32].wind.speed));
+            
+            var forecast1 = document.createElement('div');
+            forecast1.classList = "card"
+            var forecast1Date = document.createElement('h5')
+            forecast1Date.textContent = nextDate1;
+            var conditionsListEl = document.createElement('ul');
+            var temperature = document.createElement('li');
+            var windSpeed = document.createElement('li');
+            var humidity = document.createElement('li');
+            temperature.textContent = "Temp: " + Math.floor(data.list[0].main.temp) + "°F";
+            windSpeed.textContent = "Wind Speed: " + Math.floor(data.list[0].main.humidity) + "mph";
+            humidity.textContent = "Humidity: " + Math.floor(data.list[0].wind.speed) + "%";
+            conditionsListEl.appendChild(temperature);
+            conditionsListEl.appendChild(humidity);
+            conditionsListEl.appendChild(windSpeed);
+            forecast1.appendChild(forecast1Date);
+            forecast1.appendChild(conditionsListEl);
+            forecastContainer.appendChild(forecast1);
+            // console.log(nextDate1);
+            // console.log(Math.floor(data.list[0].main.temp));
+            // console.log(Math.floor(data.list[0].main.humidity));
+            // console.log(Math.floor(data.list[0].wind.speed));
+
+            var forecast2 = document.createElement('div');
+            forecast2.classList = "card"
+            var forecast2Date = document.createElement('h5')
+            forecast2Date.textContent = nextDate2;
+            var conditionsListEl = document.createElement('ul');
+            var temperature = document.createElement('li');
+            var windSpeed = document.createElement('li');
+            var humidity = document.createElement('li');
+            temperature.textContent = "Temp: " + Math.floor(data.list[8].main.temp) + "°F";
+            windSpeed.textContent = "Wind Speed: " + Math.floor(data.list[8].main.humidity) + "mph";
+            humidity.textContent = "Humidity: " + Math.floor(data.list[8].wind.speed) + "%";
+            conditionsListEl.appendChild(temperature);
+            conditionsListEl.appendChild(humidity);
+            conditionsListEl.appendChild(windSpeed);
+            forecast2.appendChild(forecast2Date);
+            forecast2.appendChild(conditionsListEl);
+            forecastContainer.appendChild(forecast2);
+            // console.log(nextDate2);
+            // console.log(Math.floor(data.list[8].main.temp));
+            // console.log(Math.floor(data.list[8].main.humidity));
+            // console.log(Math.floor(data.list[8].wind.speed));
+
+            var forecast3 = document.createElement('div');
+            forecast3.classList = "card"
+            var forecast3Date = document.createElement('h5')
+            forecast3Date.textContent = nextDate3;
+            var conditionsListEl = document.createElement('ul');
+            var temperature = document.createElement('li');
+            var windSpeed = document.createElement('li');
+            var humidity = document.createElement('li');
+            temperature.textContent = "Temp: " + Math.floor(data.list[16].main.temp) + "°F";
+            windSpeed.textContent = "Wind Speed: " + Math.floor(data.list[16].main.humidity) + "mph";
+            humidity.textContent = "Humidity: " + Math.floor(data.list[16].wind.speed) + "%";
+            conditionsListEl.appendChild(temperature);
+            conditionsListEl.appendChild(humidity);
+            conditionsListEl.appendChild(windSpeed);
+            forecast3.appendChild(forecast3Date);
+            forecast3.appendChild(conditionsListEl);
+            forecastContainer.appendChild(forecast3);
+            // console.log(nextDate3);
+            // console.log(Math.floor(data.list[16].main.temp));
+            // console.log(Math.floor(data.list[16].main.humidity));
+            // console.log(Math.floor(data.list[16].wind.speed));
+
+            var forecast4 = document.createElement('div');
+            forecast4.classList = "card"
+            var forecast4Date = document.createElement('h5')
+            forecast4Date.textContent = nextDate4;
+            var conditionsListEl = document.createElement('ul');
+            var temperature = document.createElement('li');
+            var windSpeed = document.createElement('li');
+            var humidity = document.createElement('li');
+            temperature.textContent = "Temp: " + Math.floor(data.list[24].main.temp) + "°F";
+            windSpeed.textContent = "Wind Speed: " + Math.floor(data.list[24].main.humidity) + "mph";
+            humidity.textContent = "Humidity: " + Math.floor(data.list[24].wind.speed) + "%";
+            conditionsListEl.appendChild(temperature);
+            conditionsListEl.appendChild(humidity);
+            conditionsListEl.appendChild(windSpeed);
+            forecast4.appendChild(forecast4Date);
+            forecast4.appendChild(conditionsListEl);
+            forecastContainer.appendChild(forecast4);
+            // console.log(nextDate4);
+            // console.log(Math.floor(data.list[24].main.temp));
+            // console.log(Math.floor(data.list[24].main.humidity));
+            // console.log(Math.floor(data.list[24].wind.speed));
+
+            var forecast5 = document.createElement('div');
+            forecast5.classList = "card"
+            var forecast5Date = document.createElement('h5')
+            forecast5Date.textContent = nextDate5;
+            var conditionsListEl = document.createElement('ul');
+            var temperature = document.createElement('li');
+            var windSpeed = document.createElement('li');
+            var humidity = document.createElement('li');
+            temperature.textContent = "Temp: " + Math.floor(data.list[32].main.temp) + "°F";
+            windSpeed.textContent = "Wind Speed: " + Math.floor(data.list[32].main.humidity) + "mph";
+            humidity.textContent = "Humidity: " + Math.floor(data.list[32].wind.speed) + "%";
+            conditionsListEl.appendChild(temperature);
+            conditionsListEl.appendChild(humidity);
+            conditionsListEl.appendChild(windSpeed);
+            forecast5.appendChild(forecast5Date);
+            forecast5.appendChild(conditionsListEl);
+            forecastContainer.appendChild(forecast5);
+            // console.log(nextDate5);
+            // console.log(Math.floor(data.list[32].main.temp));
+            // console.log(Math.floor(data.list[32].main.humidity));
+            // console.log(Math.floor(data.list[32].wind.speed));
         })
         .catch(function(error) {
             console.log('request failed', error)
