@@ -38,6 +38,7 @@ h6,
     box-shadow: 5px 5px 2px var(--splash);
     margin: 20px;
     font-size: large;
+    padding-top: 8px;
 }
 
 .btn {

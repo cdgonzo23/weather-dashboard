@@ -1,3 +1,4 @@
+var weatherDisplay = document.querySelector('#main-weather-display')
 var currentWeather = document.querySelector('#current-weather-container');
 var forecastContainer = document.querySelector('#forecast-container');
 var prevSearchEl = document.querySelector('#recent-searches');
@@ -32,7 +33,6 @@ function buttonClickHandler(event) {
 
 function searchCity(city) {
     var geoUrl = 'http://api.openweathermap.org/geo/1.0/direct?q=' + city + '&limit=1&appid=' + apiKey;
-
     fetch(geoUrl)
         .then(function(response) {
             return response.json();
@@ -54,6 +54,7 @@ function searchCity(city) {
                 getCurrentWeather(lat, lon)
                 getWeatherForecast(lat, lon)   
             }
+            weatherDisplay.style.display = null;
         })
         .catch(function(error) {
             console.log('request failed', error)
