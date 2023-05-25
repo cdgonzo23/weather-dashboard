@@ -1,33 +1,59 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Weather Dashboard</title>
-</head>
-<body>
-    <header>
-        <h1>Weather Dashboard</h1>
+    
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootswatch@4.5.2/dist/cyborg/bootstrap.min.css"
+      integrity="sha384-nEnU7Ae+3lD52AK+RGNzgieBWMnEfgTbRHIwEvp1XXPdqdO6uLTd/NwXbzboqjc2"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="./style.css" />
+
+    <script
+    src="https://cdn.jsdelivr.net/npm/dayjs@1.11.3/dayjs.min.js"
+    integrity="sha256-iu/zLUB+QgISXBLCW/mcDi/rnf4m4uEDO0wauy76x7U="
+    crossorigin="anonymous"
+    ></script>
+
+  </head>
+  <body class="flex-column min-100-vh">
+    <header class="hero">
+      <h1 class="app-title">Weather Dashboard</h1>
     </header>
-    <main class="container">
-        <div class="row">
-            <div class="col-12 col-md-3 p-3 bg-light text-dark">
-                <form>
-                    <fieldset>
-                        <h2>Search For a City:</h2>
-                        <div class="mb-3">
-                        <input type="text" id="city-search">
-                        </div>
-                        <button type="submit" class="search-btn">Search</button>
-                    </fieldset>
-                </form>
-                <ul id="prev-searches"></ul>
-            </div>
-            <div id="city-current-weather"></div>
-            <div id="forecast"></div>
+    <main class="flex-row justify-space-between">
+      <div class="col-12 col-md-4">
+
+        <div class="card">
+            <h5 class="card-header text-uppercase">Search For a City:</h5>
+            <form id="city-form" class="card-body">
+              <label class="form-label" for="city">City Name:</label>
+              <input name="city-name" id="city-search" type="text" autofocus="true" class="form-input"/>
+              <button type="submit" class="search-btn">Search</button>
+            </form>
         </div>
+
+        <div class="card">
+            <h5 class="card-header text-uppercase">Recent Searches:</h5>
+            <div id="recent-searches" class="card-body"></div>
+        </div>
+      </div>
+       
+      <div class="col-12 col-md-8">
+        <h3 class="subtitle">Current Weather In: <span id="city-search-name"></span></h3>
+        <div id="current-weather-container"></div>
+      </div>
+
+      <div class="col-12 col-md-8">
+        <h3 class="subtitle">5 Day Forecast For: <span id="city-search-term"></span></h3>
+        <div id="forecast-container" class="list-group"></div>
+      </div>        
     </main>
+
     <script src="./script.js"></script>
-</body>
+  </body>
 </html>
