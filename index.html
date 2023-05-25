@@ -26,7 +26,7 @@
       <h1 class="app-title">Weather Dashboard</h1>
     </header>
     <main class="row justify-space-between">
-      <div class="col-12 col-md-4">
+      <div class="col-md-4">
 
         <div class="card">
             <h5 class="card-header text-uppercase">Search For a City:</h5>
@@ -42,16 +42,18 @@
             <div id="recent-searches" class="card-body"></div>
         </div>
       </div>
-       
-      <div class="col-12 col-md-8">
-        <h3 class="subtitle">Current Weather In: <span id="city-search-name"></span></h3>
-        <div id="current-weather-container"></div>
-      </div>
+       <div class="col-md-8">
+         <div>
+           <h3 class="subtitle">Current Weather In: <span id="city-search-name"></span></h3>
+           <div id="current-weather-container"></div>
+         </div>
+   
+         <div">
+           <h3 class="subtitle">5 Day Forecast For: <span id="city-search-name-forecast"></span></h3>
+           <div id="forecast-container" class="row"></div>
+         </div>        
 
-      <div class="col-12 col-md-8">
-        <h3 class="subtitle">5 Day Forecast For: <span id="city-search-name-forecast"></span></h3>
-        <div id="forecast-container" class="row"></div>
-      </div>        
+       </div>
     </main>
 
     <script src="./script.js"></script>

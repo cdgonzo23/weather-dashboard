@@ -1,3 +1,41 @@
+:root {
+    --dark: #031214;
+    --light: #863227c5;
+    --splash: #64d8c5d5;
+}
+
+header {
+    background-image: linear-gradient(
+        #a13223c5 0%,
+        #031214 100%
+    );
+}
+
+h1, 
+h2,
+h3,
+h4, 
+h5,
+h6, 
+.h1, 
+.h2, 
+.h3, 
+.h4, 
+.h5, 
+.h6 {
+    color: var(--splash);
+}
+
+.card {
+    background-color: var(--light);
+    border: solid 2px black;
+    border-radius: 10px;
+    color: var(--splash);
+    box-shadow: 5px 5px 2px var(--splash);
+    margin: 20px;
+    font-size: large;
+}
+
 .btn {
     background-color: white;
     color: black;
