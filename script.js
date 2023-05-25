@@ -1,6 +1,6 @@
 var currentWeather = document.querySelector('#current-weather-container');
 var forecastContainer = document.querySelector('#forecast-container');
-var prevSearches = document.querySelector('#recent-searches');
+var prevSearchEl = document.querySelector('#recent-searches');
 var cityForm = document.querySelector('#city-form');
 var citySearch = document.querySelector('#city-search');
 var cityName = document.querySelector('#city-search-name');
@@ -16,7 +16,7 @@ var forecast3 = document.querySelector('#next-day3');
 var forecast4 = document.querySelector('#next-day4');
 var forecast5 = document.querySelector('#next-day5');
 var apiKey = "2493754d1fbba673aa3e32978ca44e41";
-
+var recentSearches = JSON.parse(localStorage.getItem("recentSearches")) || [];
 
 function handleSearchForm(event) {
     event.preventDefault();
@@ -25,6 +25,15 @@ function handleSearchForm(event) {
 
     if (city) {
         searchCity(city);
+        storeCity()
+    }
+}
+
+function buttonClickHandler(event) {
+    var city = event.target.textContent
+    citySearch.value = city
+    if (city) {
+        searchCity(city)
     }
 }
 
@@ -41,6 +50,9 @@ function searchCity(city) {
             console.log(data);
             if (data.length === 0) {
                 cityName.textContent = 'No City Found';
+                forecastCityName.textContent = 'No City Found';
+                currentWeather.innerHTML = null;
+                forecastContainer.innerHTML = null;
                 return;
             }
             for (var result of data) {
@@ -49,13 +61,34 @@ function searchCity(city) {
                 var lat = result.lat
                 var lon = result.lon
                 getCurrentWeather(lat, lon)
-                getWeatherForecast(lat, lon)
+                getWeatherForecast(lat, lon)   
             }
         })
         .catch(function(error) {
             console.log('request failed', error)
         })
 }
+prevCityIndex = 0;
+function displayPrevSearch() {
+    for (var i = 0; i < recentSearches.length; i++) {
+        var prevCityBtn = document.createElement('button');
+        prevCityBtn.classList = 'btn';
+        prevCityBtn.textContent = recentSearches[prevCityIndex];
+        prevCityIndex++
+
+        prevSearchEl.appendChild(prevCityBtn);
+    }
+}
+
+function storeCity() {
+    var prevCity = citySearch.value
+    if (prevCity !== '') {
+        recentSearches.push(prevCity);
+        localStorage.setItem("recentSearches", JSON.stringify(recentSearches));
+    }
+    displayPrevSearch();
+}
+
 
 function getCurrentWeather(lat, lon) {
     var currWeatherUrl = 'https://api.openweathermap.org/data/2.5/weather?lat=' + lat + '&lon=' + lon + '&appid=' + apiKey + '&units=imperial';
@@ -227,7 +260,4 @@ function getWeatherForecast(lat, lon) {
 }
 
 cityForm.addEventListener("submit", handleSearchForm);
-
-// need to create a space for the previous searched cities (will be underneath the search button)
-
-// need to create local storage function to save previous searched cities
+prevSearchEl.addEventListener('click', buttonClickHandler);
