@@ -97,7 +97,7 @@ function getCurrentWeather(lat, lon) {
             var countryId = data.sys.country
             var weatherTitle = document.createElement('h4');
             var iconEl = document.createElement('img');
-            iconEl.setAttribute('src', `http://openweathermap.org/img/w/${weatherIcon}.png`)
+            iconEl.setAttribute('src', `https://openweathermap.org/img/w/${weatherIcon}.png`)
             weatherTitle.textContent = citySearch.value + ", " + countryId + ' (' + todaysDate + ")";
             weatherTitle.appendChild(iconEl);  
             var temperature = document.createElement('p');
