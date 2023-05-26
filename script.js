@@ -29,8 +29,6 @@ function buttonClickHandler(event) {
     }
 }
 
-
-
 function searchCity(city) {
     var geoUrl = 'http://api.openweathermap.org/geo/1.0/direct?q=' + city + '&limit=1&appid=' + apiKey;
     fetch(geoUrl)
@@ -60,6 +58,7 @@ function searchCity(city) {
             console.log('request failed', error)
         })
 }
+
 prevCityIndex = 0;
 function displayPrevSearch() {
     for (var i = 0; i < recentSearches.length; i++) {
@@ -82,7 +81,6 @@ function storeCity() {
     displayPrevSearch();
 }
 
-
 function getCurrentWeather(lat, lon) {
     var currWeatherUrl = 'https://api.openweathermap.org/data/2.5/weather?lat=' + lat + '&lon=' + lon + '&appid=' + apiKey + '&units=imperial';
     fetch(currWeatherUrl)
@@ -95,29 +93,21 @@ function getCurrentWeather(lat, lon) {
             currentWeather.setAttribute("class","card px-2")
             cityName.textContent = citySearch.value;
             console.log(data.weather[0].icon);
-          
             var weatherIcon = data.weather[0].icon;
             var countryId = data.sys.country
-           
             var weatherTitle = document.createElement('h4');
             var iconEl = document.createElement('img');
             iconEl.setAttribute('src', `http://openweathermap.org/img/w/${weatherIcon}.png`)
-           
             weatherTitle.textContent = citySearch.value + ", " + countryId + ' (' + todaysDate + ")";
-            weatherTitle.appendChild(iconEl);
-            
+            weatherTitle.appendChild(iconEl);  
             var temperature = document.createElement('p');
             var windSpeed = document.createElement('p');
             var humidity = document.createElement('p');
             temperature.textContent = "Temperature: " + Math.floor(data.main.temp) + "°F";
             windSpeed.textContent = "Wind Speed: " + Math.floor(data.wind.speed) + "mph";
             humidity.textContent = "Humidity: " + Math.floor(data.main.humidity) + "%";
-           
-        
             currentWeather.append(weatherTitle, temperature, humidity, windSpeed);
-
             }
-
         )
         .catch(function(error) {
             console.log('request failed', error)
@@ -134,10 +124,8 @@ function getWeatherForecast(lat, lon) {
             console.log(data);
             forecastContainer.innerHTML = null;
             forecastCityName.textContent = citySearch.value;
-
             var forecastArr = [data.list[4], data.list[12], data.list[20], data.list[28], data.list[36]]
            console.log(data.list);
-
            for (var i = 0; i < 5; i++) {
             var forecast1 = document.createElement('div');
             forecast1.setAttribute('class', 'card col-md-2 mx-2')
@@ -155,13 +143,11 @@ function getWeatherForecast(lat, lon) {
             var windSpeed = document.createElement('p');
             var humidity = document.createElement('p');
             temperature.textContent = "Temp: " + Math.floor(forecastArr[i].main.temp) + "°F";
-            windSpeed.textContent = "Wind Speed: " + Math.floor(forecastArr[i].main.humidity) + "mph";
-            humidity.textContent = "Humidity: " + Math.floor(forecastArr[i].wind.speed) + "%";
+            windSpeed.textContent = "Wind Speed: " + Math.floor(forecastArr[i].wind.speed) + "mph";
+            humidity.textContent = "Humidity: " + Math.floor(forecastArr[i].main.humidity) + "%";
             forecast1.append(forecast1Date, temperature, windSpeed, humidity);
             forecastContainer.appendChild(forecast1);
-            
            }
-            
         })
         .catch(function(error) {
             console.log('request failed', error)
